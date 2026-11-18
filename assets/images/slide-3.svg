@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="c" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0c2238"/><stop offset="1" stop-color="#1c4660"/></linearGradient></defs>
+<rect width="1600" height="900" fill="url(#c)"/>
+<g fill="#0a1b2b"><rect x="0" y="640" width="120" height="260"/><rect x="140" y="560" width="150" height="340"/><rect x="310" y="680" width="110" height="220"/><rect x="450" y="600" width="170" height="300"/><rect x="650" y="690" width="120" height="210"/><rect x="800" y="620" width="140" height="280"/><rect x="960" y="700" width="180" height="200"/><rect x="1160" y="610" width="150" height="290"/><rect x="1330" y="670" width="130" height="230"/><rect x="1480" y="590" width="120" height="310"/></g>
+<g fill="#e0b94f" opacity=".7"><rect x="170" y="600" width="14" height="20"/><rect x="230" y="660" width="14" height="20"/><rect x="480" y="640" width="14" height="20"/><rect x="560" y="700" width="14" height="20"/><rect x="830" y="660" width="14" height="20"/><rect x="1190" y="650" width="14" height="20"/><rect x="1510" y="630" width="14" height="20"/></g>
+<g fill="none" stroke="#1e8fc1" stroke-width="3" opacity=".55"><circle cx="1230" cy="400" r="150"/><circle cx="1230" cy="400" r="240"/><circle cx="1230" cy="400" r="330"/></g>
+<g transform="translate(1100 130)"><rect width="260" height="520" rx="36" fill="#10283c" stroke="#cfe3ec" stroke-width="6"/>
+<rect x="24" y="70" width="212" height="132" rx="16" fill="#c62f2f"/>
+<path d="M130 92l34 62h-68z" fill="#fff"/><rect x="126" y="112" width="8" height="22" fill="#c62f2f"/><circle cx="130" cy="144" r="4.5" fill="#c62f2f"/>
+<rect x="46" y="170" width="168" height="12" rx="6" fill="#ffd6d2"/>
+<rect x="24" y="226" width="212" height="12" rx="6" fill="#cfe3ec"/><rect x="24" y="252" width="150" height="12" rx="6" fill="#6f93a7"/>
+<rect x="24" y="300" width="212" height="52" rx="12" fill="#e0a100"/><rect x="24" y="368" width="212" height="52" rx="12" fill="#0f766e"/></g>
+</svg>

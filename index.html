@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Alerta Cidadão – Monitoramento e Prevenção de Enchentes. Protótipo acadêmico FIAP · GS CitizenTech 2026.">
+  <title>Alerta Cidadão – Monitoramento e Prevenção de Enchentes</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <!-- Fontes do Google Fonts (não são bibliotecas JS). Se estiver offline, o navegador usa a fonte de reserva. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <a class="pular" href="#conteudo">Ir para o conteúdo</a>
+
+  <header class="topo" id="topo">
+    <div class="container topo__linha">
+      <a class="marca" href="#inicio" aria-label="Alerta Cidadão – início">
+        <img src="assets/images/logo-icone.svg" alt="" width="34" height="40">
+        <span class="marca__texto">Alerta Cidadão</span>
+      </a>
+      <button class="menu-botao" id="menuBotao" aria-expanded="false" aria-controls="menu">Menu</button>
+      <nav id="menu" class="menu" aria-label="Navegação principal">
+        <a href="#inicio" data-secao="inicio">Início</a>
+        <a href="#painel" data-secao="painel">Painel</a>
+        <a href="#como-funciona" data-secao="como-funciona">Como funciona</a>
+        <a href="#orientacoes" data-secao="orientacoes">Orientações</a>
+        <a href="#contato" data-secao="contato">Contato</a>
+        <a class="botao botao--menu" href="#contato" data-abrir-aba="alertas">Receber alertas</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- HERO com slideshow -->
+    <section class="hero" id="inicio" aria-label="Apresentação">
+      <div class="slideshow" id="slideshow" aria-roledescription="carrossel" aria-label="Ilustrações do projeto">
+        <figure class="slide ativo"><img src="assets/images/slide-1.svg" alt="Ilustração de um rio com uma estação de monitoramento, painel de níveis e régua, ao lado de uma cidade"></figure>
+        <figure class="slide"><img src="assets/images/slide-2.svg" alt="Ilustração de uma rua da cidade sob chuva forte, com a água cobrindo parte da pista"></figure>
+        <figure class="slide"><img src="assets/images/slide-3.svg" alt="Ilustração de um celular exibindo um alerta de risco de enchente sobre a silhueta da cidade"></figure>
+      </div>
+      <div class="hero__sombra"></div>
+
+      <div class="container hero__conteudo">
+        <p class="pilula">Protótipo acadêmico · GS CitizenTech 2026 · FIAP</p>
+        <h1>Saiba quando a água está subindo antes que ela chegue à sua rua.</h1>
+        <p class="hero__texto">O Alerta Cidadão simula o monitoramento do nível do rio em Vila Ribeirinha e avisa moradores sobre Normal, Atenção e Risco crítico. Todos os dados são simulados.</p>
+        <div class="hero__acoes">
+          <a class="botao botao--claro" href="#painel">Testar o painel</a>
+          <a class="botao botao--contorno" href="#contato" data-abrir-aba="alertas">Receber alertas</a>
+        </div>
+        <p class="hero__ao-vivo"><span class="ponto" id="heroPonto"></span> Na simulação agora: <strong id="heroNivel">0,80 m</strong> · <strong id="heroEstado">Normal</strong></p>
+      </div>
+
+      <div class="container hero__controles">
+        <div class="controles">
+          <button type="button" id="slideAnterior" aria-label="Imagem anterior">‹</button>
+          <button type="button" id="slideProximo" aria-label="Próxima imagem">›</button>
+          <div class="pontos" id="slidePontos"></div>
+          <button type="button" id="slidePausa" class="controles__pausa" aria-pressed="false">Pausar</button>
+          <span class="legenda-slide" id="slideLegenda"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAINEL -->
+    <section class="secao" id="painel">
+      <div class="container">
+        <div class="secao__cabeca">
+          <h2>Painel do nível do rio</h2>
+          <p>Mova o controle para simular a leitura do sensor em Vila Ribeirinha. A página muda de estado, de cores e de orientações conforme o nível.</p>
+        </div>
+
+        <div class="painel" id="painelBox" data-estado="normal">
+          <div class="medidor" aria-hidden="true">
+            <div class="medidor__escala" id="escala"></div>
+            <div class="medidor__tubo"><div class="medidor__agua" id="medidorAgua"></div></div>
+          </div>
+
+          <div class="painel__info">
+            <p class="selo" id="selo">Normal</p>
+            <p class="painel__valor" id="painelValor">0,80 m</p>
+            <p class="painel__mensagem" id="mensagemEstado" aria-live="polite"></p>
+
+            <label for="nivel">Nível simulado do rio</label>
+            <input type="range" id="nivel" min="0" max="300" value="80" step="5">
+            <p class="nota">Faixas demonstrativas: Normal abaixo de 1,50 m · Atenção de 1,50 m a 2,19 m · Risco crítico a partir de 2,20 m. Não são limites oficiais.</p>
+
+            <div class="acoes">
+              <button type="button" class="botao" id="btnChuva">Simular chuva forte</button>
+              <button type="button" class="botao botao--sec" id="btnRegistrar">Registrar leitura</button>
+              <button type="button" class="botao botao--sec" id="btnZerar">Zerar nível</button>
+            </div>
+          </div>
+
+          <div class="historico">
+            <div class="historico__topo">
+              <h3>Leituras registradas</h3>
+              <button type="button" class="link-botao" id="btnLimparHistorico">Limpar</button>
+            </div>
+            <ul id="listaHistorico" class="lista-historico">
+              <li class="vazio">Nenhuma leitura ainda. Use “Registrar leitura”.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section class="secao secao--azul" id="como-funciona">
+      <div class="container">
+        <div class="secao__cabeca">
+          <h2>Como o Alerta Cidadão funciona</h2>
+          <p>O caminho da informação, do rio até o morador. Nesta versão, a primeira etapa é simulada pelo painel.</p>
+        </div>
+        <ol class="etapas">
+          <li><h3>Medir</h3><p>Um sensor de nível acompanharia o rio. Aqui, o controle do painel faz o papel do sensor.</p></li>
+          <li><h3>Classificar</h3><p>A leitura é comparada com as faixas Normal, Atenção e Risco crítico.</p></li>
+          <li><h3>Avisar</h3><p>A página mostra o que fazer em cada estado e permite o cadastro para receber alertas.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ORIENTAÇÕES -->
+    <section class="secao" id="orientacoes">
+      <div class="container orient">
+        <div>
+          <div class="secao__cabeca">
+            <h2>O que fazer agora</h2>
+            <p>As orientações acompanham o estado do painel.</p>
+          </div>
+          <div class="agora" id="orientacaoEstado" data-estado="normal">
+            <p class="agora__titulo">Estado atual: <strong id="orientacaoNome">Normal</strong></p>
+            <ul id="orientacaoLista"></ul>
+          </div>
+        </div>
+        <div class="faq" id="faq">
+          <h3>Perguntas frequentes</h3>
+          <div class="faq__item">
+            <button type="button" class="faq__pergunta" aria-expanded="false">Os dados desta página são reais?</button>
+            <div class="faq__resposta" hidden>Não. Os níveis são simulados pelo controle do painel. Nenhum sensor, banco de dados ou serviço de alerta está conectado.</div>
+          </div>
+          <div class="faq__item">
+            <button type="button" class="faq__pergunta" aria-expanded="false">Em caso de risco real, o que devo fazer?</button>
+            <div class="faq__resposta" hidden>Siga as orientações da Defesa Civil do seu município. Em emergência, ligue 199 (Defesa Civil) ou 193 (Bombeiros).</div>
+          </div>
+          <div class="faq__item">
+            <button type="button" class="faq__pergunta" aria-expanded="false">O que acontece com o que eu preencho nos formulários?</button>
+            <div class="faq__resposta" hidden>Os campos são validados e o resultado aparece só nesta página. Nada é enviado ou salvo em servidor, e os relatos somem ao recarregar.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO / FORMULÁRIOS -->
+    <section class="secao secao--azul-claro" id="contato">
+      <div class="container contato">
+        <div class="secao__cabeca">
+          <h2>Contato</h2>
+          <p>Cadastre-se para a lista de alertas ou relate uma ocorrência na sua região. Campos com * são obrigatórios.</p>
+          <p class="nota">Protótipo: nenhum alerta real será enviado e nenhum dado é guardado.</p>
+        </div>
+
+        <div class="formularios">
+          <div class="abas" role="tablist" aria-label="Escolha o formulário">
+            <button type="button" role="tab" id="abaAlertas" class="aba ativa" aria-selected="true" aria-controls="painelAlertas" data-aba="alertas">Receber alertas</button>
+            <button type="button" role="tab" id="abaRelato" class="aba" aria-selected="false" aria-controls="painelRelato" data-aba="relato" tabindex="-1">Relatar ocorrência</button>
+          </div>
+
+          <div role="tabpanel" id="painelAlertas" aria-labelledby="abaAlertas" class="aba-painel">
+            <form id="formCadastro" novalidate>
+              <div class="campo">
+                <label for="nome">Nome completo *</label>
+                <input type="text" id="nome" name="nome" autocomplete="name">
+                <span class="erro" data-erro-para="nome"></span>
+              </div>
+              <div class="campo">
+                <label for="email">E-mail *</label>
+                <input type="email" id="email" name="email" autocomplete="email">
+                <span class="erro" data-erro-para="email"></span>
+              </div>
+              <div class="campo">
+                <label for="bairro">Bairro *</label>
+                <select id="bairro" name="bairro">
+                  <option value="">Selecione</option>
+                  <option>Vila Ribeirinha</option><option>Jardim das Águas</option><option>Centro Baixo</option><option>Morro Alto</option>
+                </select>
+                <span class="erro" data-erro-para="bairro"></span>
+              </div>
+              <fieldset class="campo">
+                <legend>Como prefere ser avisado? *</legend>
+                <label class="opcao"><input type="radio" name="canal" value="E-mail"> E-mail</label>
+                <label class="opcao"><input type="radio" name="canal" value="SMS"> SMS</label>
+                <label class="opcao"><input type="radio" name="canal" value="Aplicativo"> Aplicativo</label>
+                <span class="erro" data-erro-para="canal"></span>
+              </fieldset>
+              <div class="campo">
+                <label for="telefone">Celular <span id="telefoneDica">(obrigatório se escolher SMS)</span></label>
+                <input type="text" id="telefone" name="telefone" inputmode="tel" placeholder="(00) 00000-0000" autocomplete="tel" maxlength="15">
+                <span class="erro" data-erro-para="telefone"></span>
+              </div>
+              <div class="campo">
+                <label class="opcao"><input type="checkbox" id="aceite" name="aceite"> Entendo que este é um protótipo e que nenhum alerta real será enviado. *</label>
+                <span class="erro" data-erro-para="aceite"></span>
+              </div>
+              <button type="submit" class="botao">Cadastrar no protótipo</button>
+              <p class="retorno" id="retornoCadastro" role="status" hidden></p>
+            </form>
+          </div>
+
+          <div role="tabpanel" id="painelRelato" aria-labelledby="abaRelato" class="aba-painel" hidden>
+            <form id="formRelato" novalidate>
+              <div class="campo">
+                <label for="relBairro">Bairro *</label>
+                <select id="relBairro" name="relBairro">
+                  <option value="">Selecione</option>
+                  <option>Vila Ribeirinha</option><option>Jardim das Águas</option><option>Centro Baixo</option><option>Morro Alto</option>
+                </select>
+                <span class="erro" data-erro-para="relBairro"></span>
+              </div>
+              <div class="campo">
+                <label for="relTipo">Tipo de ocorrência *</label>
+                <select id="relTipo" name="relTipo">
+                  <option value="">Selecione</option>
+                  <option>Rua alagada</option><option>Bueiro entupido</option><option>Rio transbordando</option><option>Deslizamento de terra</option>
+                </select>
+                <span class="erro" data-erro-para="relTipo"></span>
+              </div>
+              <div class="campo">
+                <label for="relDescricao">Descrição (mínimo 20 caracteres) *</label>
+                <textarea id="relDescricao" name="relDescricao" rows="4" maxlength="300"></textarea>
+                <span class="contador"><span id="contador">0</span>/300</span>
+                <span class="erro" data-erro-para="relDescricao"></span>
+              </div>
+              <button type="submit" class="botao">Registrar relato</button>
+              <p class="retorno" id="retornoRelato" role="status" hidden></p>
+            </form>
+            <h3 class="relatos__titulo">Relatos desta sessão</h3>
+            <ul id="listaRelatos" class="lista-relatos"><li class="vazio">Nenhum relato registrado.</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape__grade">
+      <div class="rodape__marca">
+        <img src="assets/images/logo-icone.svg" alt="" width="40" height="47">
+        <div><strong>Alerta Cidadão</strong><span>Monitoramento e Prevenção de Enchentes</span></div>
+      </div>
+      <p>Projeto acadêmico FIAP · GS CitizenTech 2026 · Web Development (Front-end Dinâmico). Protótipo de demonstração: não use esta página como fonte oficial de alertas. <span id="ano"></span></p>
+    </div>
+  </footer>
+</body>
+</html>

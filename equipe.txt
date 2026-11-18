@@ -1,0 +1,18 @@
+PROJETO: Alerta Cidadão – Monitoramento e Prevenção de Enchentes
+DISCIPLINA: Web Development – Front-end Dinâmico (GS CitizenTech 2026 – FIAP)
+
+INTEGRANTES
+1. Nome completo: Murillo Kirsten Minamoto
+   RM: 576741
+
+2. Nome completo: PREENCHER
+   RM: PREENCHER
+
+3. Nome completo: PREENCHER
+   RM: PREENCHER
+
+(Acrescente ou apague linhas conforme o tamanho real do grupo.)
+
+GITHUB
+Organization: PREENCHER
+Link do repositório: PREENCHER (ex.: https://github.com/NOME-DA-ORGANIZATION/alerta-cidadao)
